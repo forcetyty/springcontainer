@@ -14,9 +14,9 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 	
-	<context:component-scan base-package="kr.co.itcen.springcontainer.user"/>
 	<context:annotation-config />
-	
+	<context:component-scan base-package="kr.co.itcen.springcontainer.soundsystem"/>
+
 	<context:component-scan
 		base-package="kr.co.itcen.springcontainer.user">
 		<context:include-filter type="annotation"

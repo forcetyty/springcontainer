@@ -13,6 +13,59 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+	
+	<!-- <context:annotation-config/> (영향) -->
+
+	<!-- id와 name은 같은 것은 아니다!!! -->
+	<bean id="user1" class="kr.co.itcen.springcontainer.user.User" />
+	<bean id="user2" name="usr2"
+		class="kr.co.itcen.springcontainer.user.User" />
+
+	<!-- index의 순서를 맞추어줘야 한다!!! -->
+	<!-- Getter 가져오는 방법 -->
+	<bean id="user3" class="kr.co.itcen.springcontainer.user.User">
+		<constructor-arg index="0" value="3" />
+		<constructor-arg index="1" value="도우너" />
+	</bean>
+
+	<!-- Setter -->
+	<bean id="user4" class="kr.co.itcen.springcontainer.user.User">
+		<property name="no" value="4" />
+		<property name="name" value="둘리" />
+	</bean>
+
+	<bean id="user5" class="kr.co.itcen.springcontainer.user.User">
+		<property name="no" value="5" />
+		<property name="name" value="또치" />
+		<!-- DI 주입!!! -->
+		<property name="friend" ref="friend1" />
+	</bean>
+
+	<!-- 기본생성자가 없기 때문에 constructor로 만들어 줘야한다. -->
+	<bean id="friend1" class="kr.co.itcen.springcontainer.user.Friend">
+		<constructor-arg value="희동이" />
+	</bean>
+
+	<bean id="user6" class="kr.co.itcen.springcontainer.user.User">
+		<property name="no" value="6" />
+		<property name="name" value="마이콜" />
+		<property name="friend">
+			<bean class="kr.co.itcen.springcontainer.user.Friend">
+				<constructor-arg value="길동" />
+			</bean>
+		</property>
+
+		<property name="friends">
+			<list>
+				<value>또치</value>
+				<value>도우너</value>
+				<value>마이콜</value>
+				<value>둘리</value>
+				<value>희동</value>
+			</list>
 		
-		<bean class="kr.co.itcen.springcontainer.user.User" />
+		</property>
+
+	</bean>
 </beans>
